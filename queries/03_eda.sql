@@ -39,6 +39,30 @@ SELECT
     ROUND(total_reorder * 100.0 / total_produk, 2) AS percentage_reorder
 FROM total_produk, total_reorder;
 
+--OVERALL--
+SELECT COUNT(*) AS total_items, 
+SUM(reordered::INT) AS total_reordered, 
+ROUND(SUM(reordered::INT)* 100.0 / COUNT(*), 2) AS reorder_rate 
+FROM analytical_dataset;
+
+--PRODUCT--
+SELECT COUNT(*) AS total_items,
+SUM(reordered::INT) AS total_reordered,
+ROUND(SUM(reordered::INT)* 100.0 / COUNT(*), 2) AS reorder_rate,
+product_name FROM analytical_dataset
+GROUP BY product_name
+ORDER BY total_reordered DESC 
+LIMIT 5;
+
+--CUSTOMER--
+SELECT COUNT(*) AS total_items,  
+SUM(reordered::INT) AS total_reordered,  
+ROUND(SUM(reordered::INT)* 100.0 / COUNT(*), 2) AS reorder_rate,  
+user_id FROM analytical_dataset  
+GROUP BY user_id  
+ORDER BY total_reordered DESC  
+LIMIT 5;
+
 --PRODUCT INISGHT--
 SELECT product_name, COUNT(product_name) AS jumlah_kemunculan 
 FROM analytical_dataset 
