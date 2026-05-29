@@ -64,8 +64,22 @@ ORDER BY total_reordered DESC
 LIMIT 5;
 
 --PRODUCT INISGHT--
+--PRODUCT POPULER--
 SELECT product_name, COUNT(product_name) AS jumlah_kemunculan 
 FROM analytical_dataset 
 GROUP BY product_name 
+ORDER BY jumlah_kemunculan DESC 
+LIMIT 10
+
+--KATEGORI DOMINAN--
+SELECT department,
+COUNT(*) AS jumlah_kemunculan FROM analytical_dataset
+GROUP BY department
+ORDER BY jumlah_kemunculan DESC 
+LIMIT 10
+
+SELECT aisle, COUNT(*) AS jumlah_kemunculan 
+FROM analytical_dataset 
+GROUP BY aisle
 ORDER BY jumlah_kemunculan DESC 
 LIMIT 10
