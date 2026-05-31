@@ -23,7 +23,6 @@ Power BI — Dashboard & visualization
 VS Code + Git — Query management & version control
 
 
-Project Structure
 instacart-market-basket-analysis/
 │
 ├── queries/
